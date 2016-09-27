@@ -1,5 +1,7 @@
 <?php
 
+
+/* --- Class Cars ---*/
 class Cars
 {
     /* Об*явили свойства обьекта
@@ -20,21 +22,43 @@ class Cars
     */
     public function getCarsInfo()
     {
-        return "{$this->name} " . " {$this->price}";
+        return "{$this->name} " . " {$this->price} $";
 
     }
 
 
-    /*NOTICE:
-    -всегда обращать внимание на тип аргументов, которіе передаются в метод;
+    /* NOTICE:
+    - всегда обращать внимание на тип аргументов, которые передаются в метод;
+    - помнить о разделении ответственности;
+    - уточнение типов, можно использовать при работе с класами, и их методами
+    при работе с примитивными типами данных, следует применять стандартные функции
+    проврки типов;
+
     */
 
 }
 
-$ferrary = new Cars('Ferrary',1000);
+/* --- Class CarsWriter ---*/
+class CarsWriter
+{
+    public function write(Cars $Cars)
+    {
+        $data = $Cars->getCarsInfo();
+
+            echo $data;
 
 
-$bmw = new Cars("BMW",2000);
+    }
+}
+
+/* --- Class Wrong, for test ---*/
+class Wrong
+{
+
+}
 
 
-echo $ferrary->getCarsInfo();
+$cars = new Cars('BMW',1500);
+$writer = new CarsWriter();
+$writer->write($cars);
+
