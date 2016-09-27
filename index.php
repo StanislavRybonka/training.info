@@ -1,3 +1,5 @@
 <?php 
-echo"Hello from index";
+
+include_once "objects/objects.php"
+
 ?>
