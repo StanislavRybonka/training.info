@@ -2,7 +2,6 @@
 
 
 /* --- Class Cars ---*/
-
 class Transport
 {
     /* Об*явили свойства обьекта
@@ -11,16 +10,17 @@ class Transport
     public $price = "Price of transport";
     public $type = "Type of transport";
     public $speed = "Speed of transport";
+    public $ecological = "Only ecological transport";
 
 
     /*Метод класа __construct, вызывается автоматически при каждом создании обьекта,
     через оператор new
     */
-  function __construct($name, $price, $type, $speed)
+    public function __construct($name,$price,$type,$speed)
     {
         $this->name = $name;
         $this->price = $price;
-        $this->type = $type;
+        $type->type = $type;
         $this->speed = $speed;
 
     }
@@ -29,8 +29,7 @@ class Transport
     */
     public function getTransportInfo()
     {
-        return "{$this->name} " . " {$this->price} $"
-        . "{$this->type}" . "{$this->speed} m/h";
+        return "{$this->name} " . " {$this->price} $";
 
     }
 
@@ -53,25 +52,13 @@ class Transport
 }
 
 /* --- Class CarsWriter ---*/
-
 class TransportWriter
 {
-   private $transports = array();
-
-    public function addTransports(Transport $transport)
+    public function write(Transport $Transport)
     {
-        $this->transports [] = $transport;
+        $data = $Transport->getTransportInfo();
 
-    }
-
-    public function write()
-    {
-        $data = "";
-        foreach ($this->transports as $transport){
-            $data .= "{$transport->getTransportInfo()}";
-            $data .= "{$transport->getCars()}";
-        }
-        echo $data;
+            echo $data;
 
 
     }
@@ -79,50 +66,19 @@ class TransportWriter
 
 
 /* --- Class Cars ---*/
-
 class Cars extends Transport
 {
-    public $fuel = "Oil for cars";
-
-    function __construct($name, $price, $type, $speed, $fuel)
-    {
-        parent::__construct($name, $price, $type, $speed);
-        $this->fuel = $fuel;
-    }
-
-    function getCars()
-    {
-        return $this->fuel;
-    }
 
 
 }
 
 
 /* --- Class Bike ---*/
-
 class Bike extends Transport
 {
 
-    public $move_energy = "Energy for move bike";
-
-    function __construct($name, $price, $type, $speed,$move_energy)
-    {
-        parent::__construct($name, $price, $type, $speed);
-
-        $this->move_energy = $move_energy;
-    }
-
-    function getBike()
-    {
-
-        return $this->move_energy;
-    }
-
 }
-
 /* --- Class Wrong, for test ---*/
-
 class Wrong
 {
 
@@ -130,18 +86,4 @@ class Wrong
 
 
 
-$cars = new Cars('BMW',1000,'Sport-car ',350,' benzin ');
-$writer = new TransportWriter();
-$writer->addTransports($cars);
-$writer->write();
-
-$cars1 = new Cars('Audi',2000,'Bussines-car ',450,' oil ');
-$writer = new TransportWriter();
-$writer->addTransports($cars1);
-$writer->write();
-
-$cars2 = new Bike('Audi',2000,'Bussines-car ',450,' oil ');
-$writer = new TransportWriter();
-$writer->addTransports($cars2);
-$writer->write();
 
