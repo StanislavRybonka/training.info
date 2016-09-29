@@ -2,25 +2,32 @@
 
 
 /* --- Class Cars ---*/
-class Cars
+class Transport
 {
     /* Об*явили свойства обьекта
      * */
-    public $name = "Name of cars";
-    public $price = "Price of cars";
+    public $name = "Name of transport";
+    public $price = "Price of transport";
+    public $type = "Type of transport";
+    public $speed = "Speed of transport";
+    public $ecological = "Only ecological transport";
+
 
     /*Метод класа __construct, вызывается автоматически при каждом создании обьекта,
     через оператор new
     */
-    public function __construct($name,$price)
+    public function __construct($name,$price,$type,$speed)
     {
         $this->name = $name;
         $this->price = $price;
+        $type->type = $type;
+        $this->speed = $speed;
+
     }
 
     /*Метод класа, используется для работы с екземплярами класа
     */
-    public function getCarsInfo()
+    public function getTransportInfo()
     {
         return "{$this->name} " . " {$this->price} $";
 
@@ -45,11 +52,11 @@ class Cars
 }
 
 /* --- Class CarsWriter ---*/
-class CarsWriter
+class TransportWriter
 {
-    public function write(Cars $Cars)
+    public function write(Transport $Transport)
     {
-        $data = $Cars->getCarsInfo();
+        $data = $Transport->getTransportInfo();
 
             echo $data;
 
@@ -57,13 +64,26 @@ class CarsWriter
     }
 }
 
+
+/* --- Class Cars ---*/
+class Cars extends Transport
+{
+    
+
+}
+
+
+/* --- Class Bike ---*/
+class Bike extends Transport
+{
+
+}
 /* --- Class Wrong, for test ---*/
 class Wrong
 {
 
 }
-$test = "eee";
-$cars = new Cars('BMW',1500);
-$writer = new CarsWriter();
-$writer->write($cars);
+
+
+
 
