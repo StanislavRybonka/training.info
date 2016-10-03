@@ -91,7 +91,26 @@ class Bike extends Transport
 class Wrong
 {
 }
+// Тут мы вызываем созданые выше методы.
+/*
 $cars = new Cars('BMW',1000,'Sport-car ',350,' benzin ');
 $writer = new TransportWriter();
 $writer->addTransports($cars);
 $writer->write();
+*/
+
+
+/*Работа с статическими методами класса.
+*/
+
+class StaticExample
+{
+    static public $number = 0;
+    static function sayHello()
+    {
+        $output = self::$number++;
+        echo "Hello from static action";
+    }
+}
+
+StaticExample::sayHello();
