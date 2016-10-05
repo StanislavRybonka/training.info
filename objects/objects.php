@@ -111,6 +111,14 @@ class StaticExample
         $output = self::$number++;
         echo "Hello from static action";
     }
-}
 
-StaticExample::sayHello();
+    static function getData()
+    {
+        $dbh = new PDO('mysql:host=phpmyadmin.app;dbname=training.info', $user ="homestead", $pass="secret");
+        foreach($dbh->query('SELECT * from cars') as $row) {
+            print_r($row);
+        }
+        $dbh = null;
+    }
+}
+StaticExample::getData();
