@@ -1,5 +1,7 @@
 <?php
 /* --- Class Cars ---*/
+
+require __DIR__.'/../components/Db.php';
 class Transport
 {
     /* Об*явили свойства обьекта
@@ -103,6 +105,7 @@ $writer->write();
 /*Работа с статическими методами класса.
 */
 
+
 class StaticExample
 {
     static public $number = 0;
@@ -114,11 +117,12 @@ class StaticExample
 
     static function getData()
     {
-        $dbh = new PDO('mysql:host=phpmyadmin.app;dbname=training.info', $user ="homestead", $pass="secret");
-        foreach($dbh->query('SELECT * from cars') as $row) {
-            print_r($row);
-        }
-        $dbh = null;
+$var = Db::sayHello();
+        echo $var;
+
     }
 }
+
+
 StaticExample::getData();
+

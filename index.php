@@ -1,6 +1,7 @@
-<?php 
+<?php
 
-include_once "objects/objects.php";
-include "db/param.php";
+
+
+require __DIR__.'/objects/objects.php';
 
 ?>
