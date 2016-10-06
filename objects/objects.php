@@ -117,12 +117,20 @@ class StaticExample
 
     static function getData()
     {
-$var = Db::sayHello();
-        echo $var;
+        $db =Db::getConnection();
+        $data = $db->query('SELECT * FROM cars WHERE id >= 1');
+        $cars = array();
+        $i = 0;
+        while ($row = $data->fetch())
+        {
+            echo $row['id'];
+            echo $row['name'];
+            echo $row['price'];
+            echo $row['year'];
 
+        }
     }
 }
-
 
 StaticExample::getData();
 
