@@ -132,5 +132,6 @@ class StaticExample
     }
 }
 
+
 StaticExample::getData();
 
