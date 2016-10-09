@@ -27,8 +27,7 @@ class Transport
         $transport = new Cars(
             $row [ 'name' ] ,
             $row [ 'price' ] ,
-            $row [ 'type' ] ,
-            $row [ 'speed' ]
+            $row [ 'year' ]
         );
         $transport->setId($row [ 'id' ]);
 
