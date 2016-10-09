@@ -1,15 +1,40 @@
 <?php
+//НАЧАЛО РАБОТЫ С ОБЬЕКТАМИ, ПО МАТЕРИАЛАМ ЗАНСТРЫ.
 /* --- Class Cars ---*/
-
 require __DIR__.'/../components/Db.php';
 class Transport
 {
     /* Об*явили свойства обьекта
      * */
+    private $id = 0;
     public $name = "Name of transport";
     public $price = "Price of transport";
     public $type = "Type of transport";
     public $speed = "Speed of transport";
+
+    public function setId($id)
+    {
+        $this->id = $this->id;
+    }
+
+    public static function getInstance($id, PDO $pdo)
+    {
+
+        $stmt = $pdo->prepare ( "select * from transport where id=? " );
+        $result = $stmt->execute ( array ( $id ) ) ;
+        $row = $stmt->fetch ( ) ;
+
+        $transport = new Cars(
+            $row [ 'name' ] ,
+            $row [ 'price' ] ,
+            $row [ 'type' ] ,
+            $row [ 'speed' ]
+        );
+        $transport->setId($row [ 'id' ]);
+
+        return $transport;
+
+    }
     /*Метод класа __construct, вызывается автоматически при каждом создании обьекта,
     через оператор new
     */
@@ -101,37 +126,7 @@ $writer->addTransports($cars);
 $writer->write();
 */
 
+$pdo = Db::getConnection();
 
-/*Работа с статическими методами класса.
-*/
-
-
-class StaticExample
-{
-    static public $number = 0;
-    static function sayHello()
-    {
-        $output = self::$number++;
-        echo "Hello from static action";
-    }
-
-    static function getData()
-    {
-        $db =Db::getConnection();
-        $data = $db->query('SELECT * FROM cars WHERE id >= 1');
-        $cars = array();
-        $i = 0;
-        while ($row = $data->fetch())
-        {
-            echo $row['id'];
-            echo $row['name'];
-            echo $row['price'];
-            echo $row['year'];
-
-        }
-    }
-}
-
-
-StaticExample::getData();
+$transport = Transport::getInstance(1,$pdo);
 
